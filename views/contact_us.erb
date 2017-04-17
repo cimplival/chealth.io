@@ -1,0 +1,156 @@
+<div class="romana_gmap_area romana_registration_form_area">
+        <div class="romana_google_map">
+            <div id="googleMap"></div>
+        </div>
+        <div class="container">
+            <div class="row ">
+                <!-- column End -->
+                <div class="col-sm-12">
+                    <div class="romana_registration_btn text-center">
+                        <p class="hvr-bounce-to-right">Contact</p>
+                    </div>
+                    <div class="romana_registration_form">
+                        <form action="/contact-us" method="post">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="field">
+                                        <input id="firstName" type="text" name="firstName" placeholder="First Name" />
+                                    </div>
+                                    <div class="field">
+                                        <input id="userEmail" type="text" name="replyTo" placeholder="Email Address" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="field">
+                                        <input id="LastName" type="text" name="lastName" placeholder="Last Name" />
+                                    </div>
+                                    <div class="field">
+                                        <input id="userPhone" type="text" name="userPhone" placeholder="Phone Number" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="field text-field">
+                                        <textarea cols="30" rows="10" name="message"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="romana_submit_btn">
+                                <input type="submit" value="Send Message" placeholder="Your Message">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- romana_registration form End -->
+                    <div class="romana_contact_info">
+                        <p><b>phone:</b> <span>+230 580 24241 <br>+254 703 436696</span></p>
+                        <address>
+                        <b>address:</b>
+                        <span>Grand Baie <br>Mauritius.</span>
+                    </address>
+                    </div>
+                </div>
+                <!-- column End -->
+            </div>
+            <!-- row End -->
+        </div>
+        <!-- container End -->
+    </div>
+<!-- ==========================================================
+9.*romana_awesome_service_area start
+============================================================ -->
+    <div class="romana_awesome_service_area romana_section_padding">
+        <div class="container">
+            <div class="romana_awesome_service_content">
+                <div class="row ">
+                    <div class="col-sm-8 col-xs-12">
+                        <div class="romana_awesome_service_text text-center">
+                            <h2>cHealth brings simplicity to Healthcare</h2>
+                        </div>
+                    </div>
+                    <!-- column End -->
+                    <div class="col-sm-2 col-sm-offset-1 col-xs-8 col-xs-offset-2">
+                        <div class="romana_awesome_service_btn ">
+                            <a href="/contact-us">Get cHealth</a>
+                        </div>
+                    </div>
+                    <!-- column End -->
+                </div>
+                <!-- row End -->
+            </div>
+        </div>
+        <!-- container End -->
+    </div>
+    
+    <!-- footer_top End -->
+        <div class="romana_footer_bottom">
+            <div class="container">
+                <div class="romana_footer_bottom_content text-center">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p><span>&copy;</span>Copyright 2017. All Right Reserved. cHealth / info@chealth.io</p>
+                        </div>
+                        <!-- column End -->
+                    </div>
+                    <!-- row End -->
+                </div>
+                <!-- container End -->
+            </div>
+        </div>
+        <!-- footer_bottom End -->
+
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"></script>
+    <script type="text/javascript">
+        var map;
+        var latlng = new google.maps.LatLng(-20.0129569, 57.5842893);
+        var stylez = [
+            {
+                featureType: "all",
+                elementType: "all",
+                stylers: [
+                    {
+                        saturation: -100
+                    } // <-- THIS
+                  ]
+                }
+            ];
+        var mapOptions = {
+            zoom: 12,
+            center: latlng,
+            scrollwheel: false,
+            scaleControl: false,
+            disableDefaultUI: true,
+            mapTypeControlOptions: {
+                mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'gMap']
+            }
+        };
+        map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+        var geocoder_map = new google.maps.Geocoder();
+        var address = 'Mauritius';
+        geocoder_map.geocode({
+            'address': address
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+
+                var marker = new google.maps.Marker({
+                    map: map,
+                    icon: 'images/map.png',
+                    position: map.getCenter()
+                });
+
+                var contentString = 'Mauritius';
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+            } else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+        var mapType = new google.maps.StyledMapType(stylez, {
+            name: "Grayscale"
+        });
+        map.mapTypes.set('gMap', mapType);
+        map.setMapTypeId('gMap');
+    </script>
